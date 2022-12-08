@@ -17,11 +17,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'username', 'password', 'gender', 'is_status', 'role', 'address', 'phone', 'email'];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function isAdmin(){
+        return $this->role == 'admin';
+    }
+    function isEmployee(){
+        return $this->role == 'employee';
+    }
+    function isLeader(){
+        return $this->role == 'leader';
+    }
 }

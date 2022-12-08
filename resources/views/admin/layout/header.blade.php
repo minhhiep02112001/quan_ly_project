@@ -24,7 +24,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('/admins/dist/img/user2-160x160.jpg') }}" class="user-image"
                             alt="User Image">
-                        <span class="hidden-xs">Nguyễn Văn A</span>
+                        <span class="hidden-xs"> {{auth()->user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -33,17 +33,17 @@
                                 alt="User Image">
 
                             <p>
-                                Nguyễn Văn A
-                                <small>2001</small>
+                                {{auth()->user()->name}}
+                                <small> {{auth()->user()->role}}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="/profile" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="/logout" class="btn btn-default btn-flat btn-logout">Sign out</a>
                             </div>
                         </li>
                     </ul>

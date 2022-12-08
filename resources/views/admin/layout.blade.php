@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
+
+    <meta name="csrf_token" content="{{csrf_token()}}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -30,6 +32,12 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('admins/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+    <script>
+        // setting const url
+        window.URL_UPLOAD_FILE = "{{route('upload.file')}}";
+        window.APP_URL = "{{url('/')}}";
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,7 +48,16 @@
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<style>
+    .badge-success, .badge.bg-success{
+        background-color: green!important;
+    }
+    .swal2-container .filepond--root{
+        display: none;
+    }
+</style>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('admins/css/customer.css') }}">
     @yield('style_css')
 </head>
@@ -284,6 +301,46 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admins/dist/js/demo.js') }}"></script>
 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{csrf_token()}}"
+            }
+        });
+
+    </script>
+
+    @if (session('notification_success'))
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'success',
+                iconColor:'green',
+                html: '<h4 style="color:black;font-weight:500;">'+ <?php echo json_encode( session('notification_success')); ?> +'</h4>',
+                background:'#fff',
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            })
+        </script>
+    @endif
+    @if (session('notification_error'))
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'error',
+                iconColor:'red',
+                html: '<h4 style="color:black;font-weight:500;">'+ <?php echo json_encode( session('notification_error')); ?> +'</h4>',
+                background:'#fff',
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            })
+        </script>
+    @endif
+    <script src="{{ asset('js/app.js') }}?v=1"></script>
     @yield('javascripts')
 </body>
 
