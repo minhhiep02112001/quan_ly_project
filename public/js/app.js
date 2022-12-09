@@ -4799,8 +4799,8 @@ var FileUpload = function () {
             if (hiddenField) {
                 if (isMultiUpload == 1) { /// upload 1 file
                     let input = hiddenField.val();
-                    input = JSON.parse(input)
                     if (input) {
+                        input = JSON.parse(input)
                         $.each(input, function (K, item) {
                             files.push(
                                 {

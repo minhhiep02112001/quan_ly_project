@@ -15,9 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-
+        \App\Models\User::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'phone' =>'039459'.rand(1000,9999),
+            'username' => 'admin',
+            'role' => 'admin',
+            'password' => Hash::make('123456')
+        ]);
         $arr = config('data.role');
          for($i= 1; $i <10 ; $i++){
              $role = array_rand($arr,1);
