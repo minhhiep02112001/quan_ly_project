@@ -18,9 +18,10 @@ Route::get('/', function () {
 });
 Route::get('login', [\App\Http\Controllers\AuthController::class , 'login'])->name('login');
 Route::post('login', [\App\Http\Controllers\AuthController::class , 'postLogin'])->name('post.login');
-Route::get('forgot-password', [\App\Http\Controllers\AuthController::class , 'forgot'])->name('forgot.password');
-Route::post('forgot-password', [\App\Http\Controllers\AuthController::class , 'forgotPassword'])->name('post/forgot.password');
-
+Route::any('logout', [\App\Http\Controllers\AuthController::class , 'logout'])->name('logout');
+Route::any('forgot-password', [\App\Http\Controllers\AuthController::class , 'forgotPassword'])->name('forgot.password');
+//Route::post('forgot-password', [\App\Http\Controllers\AuthController::class , 'postForgotPassword'])->name('post.forgot.password');
+Route::any('reset-password/{token}', [\App\Http\Controllers\AuthController::class,'reset'])->name('reset_password');
 
 Route::group(['prefix' => '' , 'middleware' => ['login']], function () {
     Route::any('/profile', [\App\Http\Controllers\AuthController::class, 'profile'])->name('profile');

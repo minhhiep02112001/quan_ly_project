@@ -196,6 +196,10 @@ class ProjectController extends Controller
 
         try {
             DB::beginTransaction();
+            if(!empty($data['status']) && $data['status'] == 2){
+                $data['end_date'] = now()->format('Y-m-d');
+            }
+
             $project->update($data);
             DB::commit();
             return redirect()->route('project.index')->with('notification_success', 'Sửa dự án thành công');

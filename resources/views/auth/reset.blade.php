@@ -31,7 +31,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="Javascript:void(0)"><b>Admin</b> </a>
+        <a href="Javascript:void(0)"><b>Đặt lại mật khẩu</b> </a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -60,30 +60,24 @@
 
         @endif
 
-        <form action="{{route('post.login')}}" method="post">
+        <form action="" method="post">
+            @method('post')
             @csrf
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Username" required name="username">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            </div>
+
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" name="password" required placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember"> Remember Me
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                </div>
-                <!-- /.col -->
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" name="password_confirmation" required placeholder="Confirm Password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+
+            <!-- /.col -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Đặt lại mật khẩu</button>
+            </div>
+
         </form>
 
 
@@ -109,7 +103,6 @@
         });
     });
 </script>
-
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (session('notification_success'))
     <script type="text/javascript">

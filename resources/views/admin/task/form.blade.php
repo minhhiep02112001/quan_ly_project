@@ -43,6 +43,7 @@
                                         @foreach($project as $key=> $item)
                                             <option value="{{$item->id}}"
                                                 {{!empty($row->project_id) && $row->project_id == $item->id ? 'selected': ''}}
+                                                {{!empty($_GET['project_id']) && $_GET['project_id'] == $item->id ? 'selected': ''}}
                                                 {{!empty(old('project_id')) && old('project_id') == $item->id ? 'selected': ''}}
                                             >{{$item->name}}</option>
                                         @endforeach

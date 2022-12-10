@@ -54,7 +54,7 @@
                         @endif
 
                         @if($row->status < 2)
-                            <a href="{{route('task.create')}}" class="btn btn-sm btn-success">Thêm công việc </a>
+                            <a href="{{route('task.create', ['project_id' => $row->id])}}" class="btn btn-sm btn-success">Thêm công việc </a>
                         @endif
 
                     @endif
